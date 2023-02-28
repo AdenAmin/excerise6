@@ -1,18 +1,19 @@
 import java.util.Scanner;
+//Aden Amin
+//Java
+//02/25
 
 public class Main {
     public static void main(String[] args) {
         UserInput input = new UserInput();
         int aNumber = input.promptInt("Enter an integer.");
-        UserInput input1 = new UserInput();
-        double aDouble = input1.promptDouble("Enter A number with a decimal");
-        UserInput input2 = new UserInput();
-        String aString = new input2.promptString();
-
-        }
-
+        double doubleNUm = input.promptDouble("Enter your double");
+        String userString = input.promptString("Enter your string ");
+        System.out.println("Your integer is " + aNumber);
+        System.out.println("Your double number is "+doubleNUm);
+        System.out.println("Your string is "+ userString);
+    }
 }
-
 class UserInput {
     Scanner scanner = new Scanner(System.in);
 
@@ -32,41 +33,54 @@ class UserInput {
                 userInput = scanner.nextLine();
             }
         }
-
         return userInt;
     }
+    public String promptString (String message) {
+        System.out.println("Enter a string: ");
+        String userInput = scanner.nextLine();
+
+
+        boolean isString = true;
+        while(isString) {
+            try {
+                double userInt = Double.parseDouble(userInput);
+                isString = false;
+            }
+            catch (NumberFormatException e) {
+
+
+                break;
+
+            }
+            System.out.println("Enter a string: ");
+            userInput = scanner.nextLine();
+        }
+        return userInput;
+    }
+
     public double promptDouble(String message) {
-        double input = 0;
-        boolean validInput = false;
-        while (!validInput) {
-            System.out.print(message);
+        System.out.println(message);
+        String userInput = scanner.nextLine();
+
+        double userDouble = 0;
+
+        boolean isInt = false;
+        while (!isInt) {
             try {
-                input = Double.parseDouble(scanner.nextLine());
-                validInput = true;
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input, please enter a number.");
-            } catch (Exception e) {
-                System.out.println("Invalid input, please try again.");
+                userDouble = Double.parseDouble(userInput);
+                isInt = true;
+            }
+            catch (NumberFormatException e) {
+                System.out.println(userInput + " is not a valid double. " + message);
+                userInput = scanner.nextLine();
             }
         }
-        return input;
+        return userDouble;
     }
-    public String promptString(String message) {
-        String input = null;
-        boolean validInput = false;
-        while (!validInput) {
-            System.out.print(message);
-            try {
-                input = scanner.nextLine();
-                validInput = true;
-            } catch (Exception e) {
-                System.out.println("Invalid input, please try again.");
-            }
-        }
-        return input;
-    }
+
+
+
 
 
 }
-
 
